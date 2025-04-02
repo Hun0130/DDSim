@@ -1,0 +1,19 @@
+---
+description: 
+globs: 
+---
+
+# Your rule content
+Do not modify any internal Fast DDS source files without explicit confirmation.
+
+Always ask before editing core Fast DDS code.
+
+When a detailed analysis of a specific file is requested, provide line-by-line comments in Korean.
+
+When creating a new source file, ask for confirmation first.
+
+If approved, include line-by-line comments in Korean.
+
+Operating system-level and network-level behaviors may be simplified or abstracted.
+e
+No need to implement full low-level interactions.
