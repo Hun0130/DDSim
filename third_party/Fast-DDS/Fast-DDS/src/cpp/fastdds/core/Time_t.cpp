@@ -80,12 +80,23 @@ int64_t Time_t::to_ns() const
     return nano;
 }
 
-void Time_t::now(
-        Time_t& ret)
-{
-    current_time_since_unix_epoch(ret.seconds, ret.nanosec);
+void Time_t::now(Time_t& ret){
+    // ret.seconds = 0;
+    // ret.nanosec = 0;
 }
 
-} // namsepace rtps
+void Time_t::increment_time(
+        int32_t sec_increment,
+        uint32_t nsec_increment)
+{
+    seconds += sec_increment;
+    nanosec += nsec_increment;
+    if (nanosec >= C_NANOSECONDS_PER_SEC){
+        seconds += nanosec / C_NANOSECONDS_PER_SEC;
+        nanosec %= C_NANOSECONDS_PER_SEC;
+    }
+}
+
+} // namespace dds
 } // namespace fastdds
 } // namespace eprosima

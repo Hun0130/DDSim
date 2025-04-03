@@ -1,17 +1,3 @@
-// Copyright 2019 Proyectos y Sistemas de Mantenimiento SL (eProsima).
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 /**
  * @file Time_t.cpp
  */
@@ -22,11 +8,18 @@
 
 #include <utils/time_t_helpers.hpp>
 
+// 명시적으로 가시성 속성 정의
+#ifdef _WIN32
+    #define TIME_T_EXPORT __declspec(dllexport)
+#else
+    #define TIME_T_EXPORT __attribute__((visibility("default")))
+#endif
+
 namespace eprosima {
 namespace fastdds {
 namespace rtps {
 
-Time_t::Time_t(
+TIME_T_EXPORT Time_t::Time_t(
         int32_t sec,
         uint32_t frac)
 {
@@ -34,21 +27,21 @@ Time_t::Time_t(
     set_fraction(frac);
 }
 
-Time_t::Time_t(
+TIME_T_EXPORT Time_t::Time_t(
         long double sec)
 {
     seconds_ = static_cast<int32_t>(sec);
     set_fraction(static_cast<uint32_t>((sec - seconds_) * C_FRACTIONS_PER_SEC));
 }
 
-Time_t::Time_t(
+TIME_T_EXPORT Time_t::Time_t(
         const eprosima::fastdds::dds::Time_t& time)
 {
     seconds_ = time.seconds;
     set_nanosec(time.nanosec);
 }
 
-int64_t Time_t::to_ns() const
+TIME_T_EXPORT int64_t Time_t::to_ns() const
 {
     // handle special cases
     // - infinite
@@ -67,7 +60,7 @@ int64_t Time_t::to_ns() const
     return nano;
 }
 
-void Time_t::from_ns(
+TIME_T_EXPORT void Time_t::from_ns(
         int64_t nanosecs)
 {
     // handle special cases
@@ -88,28 +81,28 @@ void Time_t::from_ns(
     }
 }
 
-int32_t Time_t::seconds() const
+TIME_T_EXPORT int32_t Time_t::seconds() const
 {
     return seconds_;
 }
 
-int32_t& Time_t::seconds()
+TIME_T_EXPORT int32_t& Time_t::seconds()
 {
     return seconds_;
 }
 
-void Time_t::seconds(
+TIME_T_EXPORT void Time_t::seconds(
         int32_t sec)
 {
     seconds_ = sec;
 }
 
-uint32_t Time_t::nanosec() const
+TIME_T_EXPORT uint32_t Time_t::nanosec() const
 {
     return nanosec_;
 }
 
-void Time_t::nanosec(
+TIME_T_EXPORT void Time_t::nanosec(
         uint32_t nanos)
 {
     const uint32_t s_to_nano = static_cast<uint32_t>(C_NANOSECONDS_PER_SEC);
@@ -120,35 +113,35 @@ void Time_t::nanosec(
     set_nanosec(nanos);
 }
 
-uint32_t Time_t::fraction() const
+TIME_T_EXPORT uint32_t Time_t::fraction() const
 {
     return fraction_;
 }
 
-uint32_t& Time_t::fraction()
+TIME_T_EXPORT uint32_t& Time_t::fraction()
 {
     return fraction_;
 }
 
-void Time_t::fraction(
+TIME_T_EXPORT void Time_t::fraction(
         uint32_t frac)
 {
     set_fraction(frac);
 }
 
-dds::Duration_t Time_t::to_duration_t() const
+TIME_T_EXPORT dds::Duration_t Time_t::to_duration_t() const
 {
     return dds::Duration_t(seconds_, nanosec_);
 }
 
-void Time_t::from_duration_t(
+TIME_T_EXPORT void Time_t::from_duration_t(
         const dds::Duration_t& duration)
 {
     seconds_ = duration.seconds;
     set_nanosec(duration.nanosec);
 }
 
-void Time_t::set_fraction(
+TIME_T_EXPORT void Time_t::set_fraction(
         uint32_t frac)
 {
     fraction_ = frac;
@@ -157,7 +150,7 @@ void Time_t::set_fraction(
         : frac_to_nano(fraction_);
 }
 
-void Time_t::set_nanosec(
+TIME_T_EXPORT void Time_t::set_nanosec(
         uint32_t nanos)
 {
     nanosec_ = nanos;
@@ -176,13 +169,25 @@ void Time_t::set_nanosec(
     }
 }
 
-void Time_t::now(
-        Time_t& ret)
+TIME_T_EXPORT void Time_t::now(Time_t& ret)
 {
-    current_time_since_unix_epoch(ret.seconds_, ret.nanosec_);
-    ret.set_nanosec(ret.nanosec_);
+    // ret.seconds_ = 0;
+    // ret.set_nanosec(0);
 }
 
-} // namsepace rtps
+TIME_T_EXPORT void Time_t::increment_time(
+        int32_t sec_increment,
+        uint32_t nsec_increment)
+{
+    seconds_ += sec_increment;
+    nanosec_ += nsec_increment;
+    if (nanosec_ >= C_NANOSECONDS_PER_SEC)
+    {
+        seconds_ += nanosec_ / C_NANOSECONDS_PER_SEC;
+        nanosec_ %= C_NANOSECONDS_PER_SEC;
+    }
+}
+
+} // namespace rtps
 } // namespace fastdds
 } // namespace eprosima

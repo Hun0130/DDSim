@@ -1,0 +1,17 @@
+{
+    "buildType": {
+        "default": "debug",
+        "choices": {
+            "debug": {
+                "short": "Debug",
+                "long": "디버그 정보 포함, 최적화 없음",
+                "buildType": "Debug"
+            },
+            "release": {
+                "short": "Release",
+                "long": "최적화 활성화, 디버그 정보 없음",
+                "buildType": "Release"
+            }
+        }
+    }
+} 

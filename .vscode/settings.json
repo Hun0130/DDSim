@@ -1,0 +1,25 @@
+{
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "${workspaceFolder}/third_party/Fast-DDS/Fast-DDS/install/include/**",
+        "${workspaceFolder}/build/**"
+    ],
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "files.associations": {
+        "*.idl": "c",
+        "chrono": "cpp",
+        "atomic": "cpp",
+        "iomanip": "cpp",
+        "*.ipp": "cpp",
+        "*.tcc": "cpp",
+        "condition_variable": "cpp",
+        "memory_resource": "cpp",
+        "mutex": "cpp",
+        "shared_mutex": "cpp",
+        "sstream": "cpp",
+        "stop_token": "cpp",
+        "typeinfo": "cpp",
+        "variant": "cpp",
+        "iostream": "cpp"
+    }
+} 

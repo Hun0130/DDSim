@@ -1,0 +1,19 @@
+#----------------------------------------------------------------
+# Generated CMake target import file for configuration "Debug".
+#----------------------------------------------------------------
+
+# Commands may need to know the format version.
+set(CMAKE_IMPORT_FILE_VERSION 1)
+
+# Import target "fastdds" for configuration "Debug"
+set_property(TARGET fastdds APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(fastdds PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/libfastdds.so.3.2.0"
+  IMPORTED_SONAME_DEBUG "libfastdds.so.3.2"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS fastdds )
+list(APPEND _IMPORT_CHECK_FILES_FOR_fastdds "${_IMPORT_PREFIX}/lib/libfastdds.so.3.2.0" )
+
+# Commands beyond this point should not need to know the version.
+set(CMAKE_IMPORT_FILE_VERSION)

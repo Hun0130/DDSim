@@ -14,6 +14,9 @@
 
 include(CheckCXXSourceCompiles)
 
+# 로컬 헤더 파일을 우선 사용하기 위한 설정
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include)
+
 add_subdirectory(fastdds/log)
 add_subdirectory(fastdds/xtypes)
 

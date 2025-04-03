@@ -98,6 +98,8 @@ endif()
 # 헤더 파일 포함 경로 설정
 include_directories(thirdparty/nlohmann-json)
 include_directories(thirdparty/filewatch)
+# 로컬 헤더 파일을 우선 사용
+include_directories(BEFORE ${PROJECT_SOURCE_DIR}/include)
 
 ###############################################################################
 # Options

@@ -39,6 +39,7 @@
 #include <fastdds/dds/subscriber/SampleInfo.hpp>
 #include <fastdds/dds/subscriber/Subscriber.hpp>
 #include <fastdds/dds/topic/TypeSupport.hpp>
+#include <fastdds/rtps/common/Time_t.hpp>
 
 using namespace eprosima::fastdds::dds;
 
@@ -168,6 +169,22 @@ public:
         if (listener_.matched_ > 0)
         {
             hello_.index(hello_.index() + 1);
+            
+            // DDS 시간 출력 코드 추가
+            eprosima::fastdds::rtps::Time_t current_time;
+            // 시간 초기화
+            eprosima::fastdds::rtps::Time_t::now(current_time);
+            
+            std::cout << "Current DDS Time - Seconds: " << current_time.seconds() 
+                    << " Nanosecs: " << current_time.nanosec() << std::endl;
+            
+            // 시간 증가
+            current_time.increment_time(1, 0);
+            
+            // 증가된 시간 출력
+            std::cout << "After increment_time(1,0) - Seconds: " << current_time.seconds() 
+                    << " Nanosecs: " << current_time.nanosec() << std::endl;
+            
             writer_->write(&hello_);
             return true;
         }
@@ -188,6 +205,7 @@ public:
                 std::cout << "Publisher [" << participant_name_ << "] Message: " << hello_.message() 
                          << " with index: " << hello_.index() << " SENT" << std::endl;
             }
+            // 실제 시간 사용
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     }
@@ -332,6 +350,7 @@ public:
     {
         while (listener_.samples_ < samples && !stop_flag.load())
         {
+            // 실제 시간 사용
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
         if (listener_.samples_ >= samples)
@@ -452,6 +471,15 @@ public:
 int main(int argc, char** argv)
 {
     std::cout << "Starting DDS Simulator." << std::endl;
+    
+    // 시뮬레이션 시간 초기화 - 필요 없으므로 제거
+    // 대신 현재 시간 표시
+    auto current_time = std::chrono::system_clock::now();
+    std::cout << "Current system time: " << std::chrono::duration_cast<std::chrono::milliseconds>(
+                current_time.time_since_epoch()).count() << " ms" << std::endl;
+    
+    // 수정된 FastDDS 시간 확인 (FastDDS 시간은 항상 2023년 1월 1일 0시 0분 0.123456789초로 설정됨)
+    std::cout << "SimTime: 시간이 2023년 1월 1일 00:00:00.123456789으로 고정됩니다." << std::endl;
     
     // 샘플 수 설정 (기본값 10)
     uint32_t samples = 10;

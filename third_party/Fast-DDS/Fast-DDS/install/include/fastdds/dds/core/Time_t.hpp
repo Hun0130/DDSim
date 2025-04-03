@@ -63,13 +63,17 @@ struct FASTDDS_EXPORTED_API Time_t
         return is_infinite(*this);  // 아래 정의된 정적 함수 is_infinite를 호출
     }
 
+    static void now(Time_t& ret);
+
     /**
-     * 현재 시간을 Time_t 구조체로 채우는 정적 멤버 함수.
-     *
-     * @param ret 채워질 Time_t 구조체에 대한 참조
+     * 시간을 증가시키는 함수
+     * 
+     * @param sec_increment 증가시킬 초 단위 시간
+     * @param nsec_increment 증가시킬 나노초 단위 시간
      */
-    static void now(
-            Time_t& ret);
+    void increment_time(
+            int32_t sec_increment,
+            uint32_t nsec_increment);
 
     // 주어진 Time_t 객체가 무한대 시간(INFINITE_SECONDS 또는 INFINITE_NANOSECONDS)을 가지는지 확인하는 정적 인라인 constexpr 함수
     static inline constexpr bool is_infinite(

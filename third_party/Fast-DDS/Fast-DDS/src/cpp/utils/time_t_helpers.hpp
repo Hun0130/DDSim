@@ -38,18 +38,9 @@ static void current_time_since_unix_epoch(
         int32_t& secs,
         uint32_t& nanosecs)
 {
-    using namespace std::chrono;
-
-    // Get time since epoch
-    auto t_since_epoch = system_clock::now().time_since_epoch();
-    // Get seconds
-    auto secs_t = duration_cast<seconds>(t_since_epoch);
-    // Remove seconds from time
-    t_since_epoch -= secs_t;
-
-    // Get seconds and nanoseconds
-    secs = static_cast<int32_t>(secs_t.count());
-    nanosecs = static_cast<uint32_t>(duration_cast<nanoseconds>(t_since_epoch).count());
+    // 항상 커스텀 시간만 사용
+    secs = 0;
+    nanosecs = 0;
 }
 
 #endif // FASTDDS_UTILS__TIMETHELPERS_HPP

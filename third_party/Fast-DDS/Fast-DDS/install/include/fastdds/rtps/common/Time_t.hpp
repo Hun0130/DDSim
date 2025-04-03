@@ -125,8 +125,11 @@ public:
      *
      * @param ret Reference to the structure to be filled in.
      */
-    static void now(
-            Time_t& ret);
+    static void now(Time_t& ret);
+
+    void increment_time(
+        int32_t sec_increment,
+        uint32_t nsec_increment);
 
 private:
 

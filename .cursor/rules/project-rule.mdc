@@ -17,3 +17,5 @@ If approved, include line-by-line comments in Korean.
 Operating system-level and network-level behaviors may be simplified or abstracted.
 e
 No need to implement full low-level interactions.
+
+There is no library name 'fastrtps', It's 'fastdds'
