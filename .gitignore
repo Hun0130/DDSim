@@ -1,4 +1,3 @@
 # Ignore Fast DDS build outputs
 third_party/Fast-DDS/Fast-DDS/build/
-third_party/Fast-DDS/Fast-DDS/install/third_party/Fast-DDS/Fast-DDS/build/
 third_party/Fast-DDS/Fast-DDS/install/
