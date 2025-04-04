@@ -1,5 +1,6 @@
-CMakeFiles/HelloWorldSimulator.dir/HelloWorldSimulator.cpp.o: \
- /home/hoon/DDSim/src/HelloWorldSimulator.cpp /usr/include/stdc-predef.h \
+CMakeFiles/HelloWorldSimulator.dir/HelloWorldPubSubTypes.cxx.o: \
+ /home/hoon/DDSim/src/HelloWorldPubSubTypes.cxx \
+ /usr/include/stdc-predef.h \
  /home/hoon/DDSim/src/HelloWorldPubSubTypes.hpp \
  /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/policy/QosPolicies.hpp \
  /usr/include/c++/11/bitset /usr/include/c++/11/string \
@@ -314,101 +315,11 @@ CMakeFiles/HelloWorldSimulator.dir/HelloWorldSimulator.cpp.o: \
  /usr/include/malloc.h \
  /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/install/include/fastcdr/CdrSizeCalculator.hpp \
  /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/utils/md5.hpp \
- /home/hoon/DDSim/src/HelloWorld.hpp /usr/include/c++/11/thread \
- /usr/include/c++/11/bits/std_thread.h \
- /usr/include/c++/11/bits/this_thread_sleep.h \
- /usr/include/c++/11/condition_variable /usr/include/c++/11/unordered_map \
- /usr/include/c++/11/bits/hashtable.h \
- /usr/include/c++/11/bits/hashtable_policy.h \
- /usr/include/c++/11/bits/enable_special_members.h \
- /usr/include/c++/11/bits/unordered_map.h \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/domain/DomainParticipant.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/builtin/topic/ParticipantBuiltinTopicData.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/rtps/builtin/data/ParticipantBuiltinTopicData.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/rtps/builtin/data/BuiltinTopicKey.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/rtps/common/RemoteLocators.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/builtin/topic/TopicBuiltinTopicData.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/builtin/topic/BuiltinTopicKey.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/Entity.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/common/InstanceHandle.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/condition/StatusCondition.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/condition/Condition.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/ReturnCode.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/detail/DDSReturnCode.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/detail/DDSSecurityReturnCode.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/detail/DDSReturnCode.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/StatusMask.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/domain/qos/DomainParticipantQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/domain/qos/ReplierQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/publisher/qos/DataWriterQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/policy/RTPSReliableWriterQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/rtps/attributes/WriterAttributes.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/rtps/attributes/EndpointAttributes.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/policy/WriterDataLifecycleQosPolicy.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/publisher/qos/PublisherQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/publisher/qos/WriterQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/topic/qos/TopicQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/qos/DataReaderQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/policy/ReaderDataLifecycleQosPolicy.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/policy/ReaderResourceLimitsQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/policy/RTPSReliableReaderQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/rtps/attributes/ReaderAttributes.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/qos/ReaderQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/qos/SubscriberQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/domain/qos/RequesterQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/rpc/ServiceTypeSupport.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/topic/TypeSupport.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/DynamicPubSubType.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/Types.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/detail/dynamic_language_binding.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/type_traits.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/detail/type_traits.hpp \
+ /home/hoon/DDSim/src/HelloWorld.hpp \
+ /home/hoon/DDSim/src/HelloWorldCdrAux.hpp \
+ /home/hoon/DDSim/src/HelloWorldTypeObjectSupport.hpp \
  /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/type_representation/TypeObject.hpp \
  /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/type_representation/detail/dds_xtypes_typeobjectCdrAux.hpp \
  /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/type_representation/detail/dds_xtypes_typeobject.hpp \
  /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/type_representation/detail/dds_xtypes_typeobjectPubSubTypes.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/topic/ContentFilteredTopic.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/topic/TopicDescription.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/topic/Topic.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/BaseStatus.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/topic/IContentFilterFactory.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/LoanableTypedCollection.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/LoanableCollection.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/topic/IContentFilter.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/topic/TopicListener.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/domain/DomainParticipantFactory.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/domain/qos/DomainParticipantExtendedQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/domain/qos/DomainParticipantQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/domain/qos/DomainParticipantFactoryQos.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/DynamicType.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/AnnotationDescriptor.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/DynamicTypeMember.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/MemberDescriptor.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/VerbatimTextDescriptor.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/TypeDescriptor.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/dynamic_types/DynamicTypeBuilder.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/xtypes/type_representation/ITypeObjectRegistry.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/LibrarySettings.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/publisher/DataWriter.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/builtin/topic/PublicationBuiltinTopicData.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/rtps/builtin/data/PublicationBuiltinTopicData.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/builtin/topic/SubscriptionBuiltinTopicData.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/rtps/builtin/data/SubscriptionBuiltinTopicData.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/DeadlineMissedStatus.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/IncompatibleQosStatus.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/PublicationMatchedStatus.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/MatchedStatus.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/publisher/DataWriterListener.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/publisher/Publisher.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/DataReader.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/LoanableSequence.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/SampleRejectedStatus.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/SubscriptionMatchedStatus.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/ReadCondition.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/InstanceState.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/SampleState.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/ViewState.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/SampleInfo.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/DataReaderListener.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/core/status/LivelinessChangedStatus.hpp \
- /home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include/fastdds/dds/subscriber/Subscriber.hpp
+ /home/hoon/DDSim/src/HelloWorldCdrAux.ipp

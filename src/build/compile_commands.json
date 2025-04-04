@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/hoon/DDSim/src/build",
+  "command": "/usr/bin/c++  -I/home/hoon/DDSim/src -I/home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include -I/home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/install/include -std=gnu++11 -o CMakeFiles/HelloWorldSimulator.dir/HelloWorldSimulator.cpp.o -c /home/hoon/DDSim/src/HelloWorldSimulator.cpp",
+  "file": "/home/hoon/DDSim/src/HelloWorldSimulator.cpp"
+},
+{
+  "directory": "/home/hoon/DDSim/src/build",
+  "command": "/usr/bin/c++  -I/home/hoon/DDSim/src -I/home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include -I/home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/install/include -std=gnu++11 -o CMakeFiles/HelloWorldSimulator.dir/HelloWorldPubSubTypes.cxx.o -c /home/hoon/DDSim/src/HelloWorldPubSubTypes.cxx",
+  "file": "/home/hoon/DDSim/src/HelloWorldPubSubTypes.cxx"
+},
+{
+  "directory": "/home/hoon/DDSim/src/build",
+  "command": "/usr/bin/c++  -I/home/hoon/DDSim/src -I/home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/include -I/home/hoon/DDSim/src/../third_party/Fast-DDS/Fast-DDS/install/include -std=gnu++11 -o CMakeFiles/HelloWorldSimulator.dir/HelloWorldTypeObjectSupport.cxx.o -c /home/hoon/DDSim/src/HelloWorldTypeObjectSupport.cxx",
+  "file": "/home/hoon/DDSim/src/HelloWorldTypeObjectSupport.cxx"
+}
+]

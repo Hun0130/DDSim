@@ -1,25 +1,22 @@
 {
+    "cmake.configureOnOpen": true,
+    "cmake.sourceDirectory": "${workspaceFolder}/src",
+    "cmake.buildDirectory": "${workspaceFolder}/src/build",
+    "cmake.useCMakePresets": false,
+    "C_Cpp.default.compileCommands": "${workspaceFolder}/src/build/compile_commands.json",
+    "C_Cpp.default.cppStandard": "c++17",
     "C_Cpp.default.includePath": [
-        "${workspaceFolder}/**",
-        "${workspaceFolder}/third_party/Fast-DDS/Fast-DDS/install/include/**",
-        "${workspaceFolder}/build/**"
+        "${workspaceFolder}/include",
+        "${workspaceFolder}/third_party",
+        "${workspaceFolder}/third_party/Fast-DDS/Fast-DDS/install/include"
     ],
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.intelliSenseEngine": "default",
+    "C_Cpp.errorSquiggles": "enabled",
     "files.associations": {
-        "*.idl": "c",
-        "chrono": "cpp",
-        "atomic": "cpp",
-        "iomanip": "cpp",
-        "*.ipp": "cpp",
-        "*.tcc": "cpp",
-        "condition_variable": "cpp",
-        "memory_resource": "cpp",
-        "mutex": "cpp",
-        "shared_mutex": "cpp",
-        "sstream": "cpp",
-        "stop_token": "cpp",
-        "typeinfo": "cpp",
-        "variant": "cpp",
-        "iostream": "cpp"
-    }
-} 
+        "*.idl": "cpp"
+    },
+    "files.exclude": {
+        ".cursor/**": true
+    },
+    "editor.formatOnSave": true
+}

@@ -94,25 +94,51 @@ bool UDPChannelResource::Receive(
 {
     try
     {
-        asio::ip::udp::endpoint senderEndpoint;
-
-        size_t bytes = socket()->receive_from(asio::buffer(receive_buffer, receive_buffer_capacity), senderEndpoint);
-        receive_buffer_size = static_cast<uint32_t>(bytes);
-        if (receive_buffer_size > 0)
+        // SerializedOutputData가 있는지 확인하고 있다면 해당 데이터를 사용
+        if (!last_serialized_data.data.empty())
         {
-            // This is not necessary anymore but it's left here for back compatibility with versions older than 1.8.1
-            if (receive_buffer_size == 13 && memcmp(receive_buffer, "EPRORTPSCLOSE", 13) == 0)
+            EPROSIMA_LOG_INFO(RTPS_MSG_IN, "Using last serialized data instead of socket receive");
+            
+            // 버퍼 크기 제한 확인
+            size_t bytes_to_copy = std::min(static_cast<size_t>(receive_buffer_capacity), last_serialized_data.data.size());
+            receive_buffer_size = static_cast<uint32_t>(bytes_to_copy);
+            
+            // 데이터 복사
+            memcpy(receive_buffer, last_serialized_data.data.data(), bytes_to_copy);
+            
+            // destination 정보를 파싱하여 원격 로케이터 설정
+            // 예: "127.0.0.1:7412"에서 IP와 포트 추출
+            std::string destination = last_serialized_data.destination;
+            size_t pos = destination.find(":");
+            
+            if (pos != std::string::npos)
             {
-                return false;
+                std::string ip = destination.substr(0, pos);
+                int port = std::stoi(destination.substr(pos + 1));
+                
+                asio::ip::udp::endpoint endpoint(asio::ip::address::from_string(ip), port);
+                transport_->endpoint_to_locator(endpoint, remote_locator);
             }
-            transport_->endpoint_to_locator(senderEndpoint, remote_locator);
+            else
+            {
+                // 기본값 설정
+                asio::ip::udp::endpoint endpoint(asio::ip::address::from_string("127.0.0.1"), 7412);
+                transport_->endpoint_to_locator(endpoint, remote_locator);
+            }
+            
+            // 데이터 처리 후 비우기
+            last_serialized_data.data.clear();
+            
+            EPROSIMA_LOG_INFO(RTPS_MSG_IN, "Processed serialized data, size: " << receive_buffer_size);
+            return (receive_buffer_size > 0);
         }
-        return (receive_buffer_size > 0);
+        
+        return false;
     }
     catch (const std::exception& error)
     {
         (void)error;
-        EPROSIMA_LOG_WARNING(RTPS_MSG_OUT, "Error receiving data: " << error.what() << " - " << message_receiver()
+        EPROSIMA_LOG_WARNING(RTPS_MSG_OUT, "Error processing data: " << error.what() << " - " << message_receiver()
                                                                     << " (" << this << ")");
         return false;
     }

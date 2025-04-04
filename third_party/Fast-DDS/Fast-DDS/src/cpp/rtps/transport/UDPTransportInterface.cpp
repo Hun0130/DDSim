@@ -17,8 +17,10 @@
 #include <algorithm>
 #include <chrono>
 #include <cstring>
+#include <iomanip>
 #include <limits>
 #include <utility>
+#include <sstream>
 
 #include <fastdds/dds/log/Log.hpp>
 #include <fastdds/rtps/transport/TransportInterface.hpp>
@@ -34,6 +36,31 @@ using namespace asio;
 namespace eprosima {
 namespace fastdds {
 namespace rtps {
+
+// SerializedOutputData::print 함수 구현
+void SerializedOutputData::print() const 
+{
+    std::stringstream ss;
+    ss << "SerializedOutputData to " << destination << " [" << data.size() << " bytes]: " << std::hex;
+    for (size_t i = 0; i < data.size() && i < 64; i++) {
+        ss << std::setw(2) << std::setfill('0') << static_cast<int>(data[i]) << " ";
+        if ((i + 1) % 16 == 0) ss << std::endl;
+    }
+    if (data.size() > 64) ss << "...";
+    if (data.size() % 16 != 0) ss << std::endl;
+    ss << std::dec; // 10진수 모드로 복원
+    
+    EPROSIMA_LOG_INFO(TRANSPORT_UDP, ss.str());
+}
+
+// 전역 변수로 마지막으로 직렬화된 데이터 저장
+thread_local SerializedOutputData last_serialized_data;
+
+// 직렬화된 출력 데이터 반환 함수
+SerializedOutputData& get_last_serialized_data()
+{
+    return last_serialized_data;
+}
 
 using Log = fastdds::dds::Log;
 
@@ -519,13 +546,14 @@ bool UDPTransportInterface::send(
     {
         if (IsLocatorSupported(*it))
         {
+            // 모든 로케이터에 대해 직렬화된 데이터 생성 및 저장
             ret &= send(buffers,
-                            total_bytes,
-                            socket,
-                            *it,
-                            only_multicast_purpose,
-                            whitelisted,
-                            time_out);
+                        total_bytes,
+                        socket,
+                        *it,
+                        only_multicast_purpose,
+                        whitelisted,
+                        time_out);
         }
 
         ++it;
@@ -563,52 +591,26 @@ bool UDPTransportInterface::send(
 
         auto destinationEndpoint = generate_endpoint(remote_locator, IPLocator::getPhysicalPort(remote_locator));
 
-        size_t bytesSent = 0;
-
         try
         {
-            (void)timeout;
-#ifndef _WIN32
-            struct timeval timeStruct;
-            timeStruct.tv_sec = 0;
-            timeStruct.tv_usec = timeout.count() > 0 ? timeout.count() : 0;
-            setsockopt(getSocketPtr(socket)->native_handle(), SOL_SOCKET, SO_SNDTIMEO,
-                    reinterpret_cast<const char*>(&timeStruct), sizeof(timeStruct));
-#endif // ifndef _WIN32
-
-            asio::error_code ec;
+            // 실제 네트워크 전송 대신 데이터를 직렬화하여 저장
+            std::string destination = destinationEndpoint.address().to_string() + ":" + 
+                                      std::to_string(destinationEndpoint.port());
+            
             // Statistics submessage is always the last buffer to be added
             statistics_info_.set_statistics_message_data(remote_locator, buffers.back(), total_bytes);
-            bytesSent = getSocketPtr(socket)->send_to(buffers, destinationEndpoint, 0, ec);
-            if (!!ec)
-            {
-                if ((ec.value() == asio::error::would_block) ||
-                        (ec.value() == asio::error::try_again))
-                {
-                    EPROSIMA_LOG_WARNING(TRANSPORT_UDP, "UDP send would have blocked. Packet is dropped.");
-                    return true;
-                }
-
-                EPROSIMA_LOG_WARNING(TRANSPORT_UDP, ec.message());
-                return false;
-            }
-
-            if (bytesSent != total_bytes)
-            {
-                EPROSIMA_LOG_WARNING(TRANSPORT_UDP, "Boost send_to wasn't able to send all bytes");
-            }
+            
+            // 직렬화 수행 및 결과 저장 (콘솔 출력 없음)
+            last_serialized_data = serialize_network_buffers(buffers, total_bytes, destination);
+            
+            // 전송 성공으로 처리
+            success = true;
         }
         catch (const std::exception& error)
         {
             EPROSIMA_LOG_WARNING(TRANSPORT_UDP, error.what());
             return false;
         }
-
-        (void)bytesSent;
-        EPROSIMA_LOG_INFO(TRANSPORT_UDP,
-                "UDPTransport: " << bytesSent << " bytes TO endpoint: " << destinationEndpoint <<
-                " FROM " << getSocketPtr(socket)->local_endpoint());
-        success = true;
     }
 
     return success;
@@ -818,6 +820,26 @@ bool UDPTransportInterface::is_localhost_allowed() const
 NetmaskFilterInfo UDPTransportInterface::netmask_filter_info() const
 {
     return {netmask_filter_, allowed_interfaces_};
+}
+
+// 네트워크 버퍼에서 직렬화된 데이터로 변환
+SerializedOutputData serialize_network_buffers(
+        const std::vector<NetworkBuffer>& buffers,
+        uint32_t total_bytes,
+        const std::string& destination)
+{
+    SerializedOutputData result;
+    result.data.reserve(total_bytes);
+    result.destination = destination;
+    
+    // 각 버퍼의 데이터를 연속적인 메모리에 복사
+    for (const auto& buffer : buffers)
+    {
+        const uint8_t* data = static_cast<const uint8_t*>(buffer.buffer);
+        result.data.insert(result.data.end(), data, data + buffer.size);
+    }
+    
+    return result;
 }
 
 } // namespace rtps
